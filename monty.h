@@ -1,16 +1,20 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#define PUSH 1
-#define PALL 2
-#define PINT 3
-#define POP 4
+#define PUSH 0
+#define PALL 1
+#define PINT 2
+#define POP 3
+#define SWAP 4
+#define ADD 5
+#define NOP 6
 #define INVALID_OPCODE -1
 
-#include <stddef.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
 #include <string.h>
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -44,14 +48,16 @@ typedef struct instruction_s
 extern stack_t *globalStack;
 extern instruction_t instructions[];
 
-int get_opcode(char *opcode);
-int push(char *str_value, int line_num);
-void pall(stack_t *stack);
-char **parse_arguments(char *input);
 int read_file(char *filename);
+char **parse_arguments(char *input);
+int is_integer(char *str);
+int get_opcode(char *opcode);
 int run_command(char **arguments, int line_num);
 void free_stack();
-int pint(int line_number);
+
+int push(char *str_value, int line_num);
 int pop(unsigned int line_number);
-int is_integer(char *str);
+int pint(int line_number);
+void pall(stack_t *stack);
+
 #endif /* MONTY_H */
