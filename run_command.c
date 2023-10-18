@@ -24,7 +24,6 @@ int get_opcode(char *opcode)
  */
 int run_command(char **arguments)
 {
-	int i = 0;
 	char *opcode;
 	if (arguments[0] == NULL)
 	{
