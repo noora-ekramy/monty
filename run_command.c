@@ -20,6 +20,8 @@ int get_opcode(char *opcode)
 		return (ADD);
 	if (strcmp(opcode, "nop") == 0)
 		return (NOP);
+	if (strcmp(opcode, "sub") == 0)
+		return (SUB);
 
 	return (INVALID_OPCODE);
 }
@@ -61,6 +63,9 @@ int run_command(char **arguments, int line_num)
 		exit_code = add(line_num);
 		break;
 	case NOP:
+		break;
+	case SUB:
+		exit_code = sub(line_num);
 		break;
 	default:
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);
