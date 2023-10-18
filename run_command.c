@@ -30,7 +30,7 @@ int run_command(char **arguments, int line_num)
 
 	if (arguments[0] == NULL)
 	{
-		return (EXIT_FAILURE);
+		return (EXIT_FAILURE+1);
 	}
 	exit_code = 0;
 	opcode = arguments[0];

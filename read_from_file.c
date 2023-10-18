@@ -29,6 +29,8 @@ int read_file(char *filename)
 			free_stack();
 			exit(EXIT_FAILURE);
 		}
+		else if (exit_code == EXIT_FAILURE + 1)
+			exit_code = EXIT_FAILURE;
 		line_num++;
 	}
 	if (line != NULL)
