@@ -50,13 +50,8 @@ int run_command(char **arguments, int line_num)
 		break;
 	default:
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);
-		free(arguments);
-		exit(EXIT_FAILURE);
+		
+		return(EXIT_FAILURE);
 	}
-	if(exit_code == EXIT_FAILURE)
-	{
-		free(arguments);
-		exit(EXIT_FAILURE);
-	}
-	return (0);
+	return (exit_code);
 }

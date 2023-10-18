@@ -21,10 +21,14 @@ int read_file(char *filename)
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		arguments = parse_arguments(line);
-		exit_code = run_command(arguments , line_num);
+		exit_code = run_command(arguments, line_num);
 		free(arguments);
+		if (exit_code == EXIT_FAILURE)
+		{
+			free(line);
+			exit(EXIT_FAILURE);
+		}
 		line_num++;
-
 	}
 	if (line != NULL)
 		free(line);
@@ -38,7 +42,7 @@ int read_file(char *filename)
  * Return: the input
  *
  * @input: command
-*/
+ */
 
 char **parse_arguments(char *input)
 {
