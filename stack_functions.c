@@ -75,4 +75,17 @@ void free_stack(stack_t *stack)
 		free(temp);
 	}
 }
-
+/**
+ * pint - Print the value at the top of the stack, followed by a new line.
+ * If the stack is empty, print an error message and exit with EXIT_FAILURE.
+ * @line_number: Line number in the Monty file where the pint opcode appears.
+ */
+void pint(int line_number)
+{
+	if (globalStack == NULL)
+	{
+		fprintf(stderr, "L%i: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", globalStack->n);
+}

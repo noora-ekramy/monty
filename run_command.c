@@ -7,13 +7,12 @@
 int get_opcode(char *opcode)
 {
 	if (strcmp(opcode, "push") == 0)
-	{
 		return (PUSH);
-	}
 	if (strcmp(opcode, "pall") == 0)
-	{
 		return (PALL);
-	}
+	if (strcmp(opcode, "pint") == 0)
+		return (PINT);
+
 	return (INVALID_OPCODE);
 }
 /**
@@ -32,15 +31,18 @@ int run_command(char **arguments, int line_num)
 	opcode = arguments[0];
 	switch (get_opcode(opcode))
 	{
-		case PUSH:
-			push(arguments[1], line_num);
-			break;
-		case PALL:
-			pall(globalStack);
-			break;
-		default:
-			fprintf(stderr, "L%i: unknown instruction %s\n", line_num , opcode);
-			exit(EXIT_FAILURE);
+	case PUSH:
+		push(arguments[1], line_num);
+		break;
+	case PALL:
+		pall(globalStack);
+		break;
+	case PINT:
+		pint(line_num);
+		break;
+	default:
+		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }
