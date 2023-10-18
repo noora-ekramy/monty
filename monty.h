@@ -38,7 +38,8 @@ typedef struct instruction_s
 extern stack_t *globalStack;
 extern instruction_t instructions[];
 
-void push(stack_t **stack, unsigned int line_number);
+int get_opcode(char *opcode);
+void push(stack_t **stack, char *str_value);
 void pall(stack_t **stack);
 int read_file(char *filename);
 char **parse_arguments(char *input);
