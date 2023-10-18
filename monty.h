@@ -12,6 +12,7 @@
 #define DIV 8
 #define MUL 9
 #define MOD 10
+#define PCHAR 11
 #define INVALID_OPCODE -1
 
 #include <stdio.h>
@@ -70,4 +71,5 @@ int sub(int line_number);
 int div_op(unsigned int line_number);
 int mul_op(unsigned int line_number);
 int mod_op(unsigned int line_number);
+int pchar_op(int line_number);
 #endif /* MONTY_H */
