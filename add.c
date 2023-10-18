@@ -22,7 +22,6 @@ int add(int line_number)
 		return (EXIT_FAILURE);
 	}
 
-
 	sum = top->n;
 	sum += top->next->n;
 	top->next->n = sum;

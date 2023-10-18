@@ -21,7 +21,6 @@ int swap(int line_number)
 		return (EXIT_FAILURE);
 	}
 
-
 	temp = top->n;
 	top->n = top->next->n;
 	top->next->n = temp;
