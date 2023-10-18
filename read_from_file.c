@@ -16,11 +16,14 @@ int read_file(char *filename)
 	if (fp == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
-		return(127);
+		return(EXIT_FAILURE);
 	}
 	while ((getline(&line, &len, fp)) != -1)
 	{
+		
 		arguments = parse_arguments(line);
+		if(is_comment(arguments[0]))
+			continue;
 		exit_code = run_command(arguments, line_num);
 		free(arguments);
 		if (exit_code == EXIT_FAILURE)
