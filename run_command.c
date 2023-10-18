@@ -27,8 +27,7 @@ int run_command(char **arguments, int line_num)
 	char *opcode;
 	if (arguments[0] == NULL)
 	{
-		fprintf(stderr, "Error: Empty command\n");
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 	opcode = arguments[0];
 	switch (get_opcode(opcode))
