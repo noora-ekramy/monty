@@ -1,6 +1,10 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define PUSH 1
+#define PALL 2
+#define INVALID_OPCODE -1
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -39,10 +43,10 @@ extern stack_t *globalStack;
 extern instruction_t instructions[];
 
 int get_opcode(char *opcode);
-void push(stack_t **stack, char *str_value);
-void pall(stack_t **stack);
+void push(char *str_value);
+void pall(stack_t *stack);
 int read_file(char *filename);
 char **parse_arguments(char *input);
 int run_command(char **arguments);
-
+void free_stack(stack_t *stack);
 #endif /* MONTY_H */

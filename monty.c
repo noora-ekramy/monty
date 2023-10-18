@@ -1,10 +1,5 @@
 #include "monty.h"
-
 stack_t *globalStack = NULL;
-instruction_t instructions[] = {
-	{"push", push},
-	{NULL, NULL}
-};
 /**
  * main - entry point to monty
  *
@@ -15,11 +10,13 @@ instruction_t instructions[] = {
  */
 int main(int argc, char *argv[])
 {
+
 	int exit_code = 0;
 
 	if (argc == 2)
 	{
 		exit_code = read_file(argv[1]);
+		free_stack(globalStack);
 		return (exit_code);
 	}
 	return (0);

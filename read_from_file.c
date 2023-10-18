@@ -52,11 +52,11 @@ char **parse_arguments(char *input)
 		return (NULL);
 	}
 
-	token = strtok(input, " ");
+	token = strtok(input, " \n");
 	for (i = 0; token; i++)
 	{
 		tokens[i] = token;
-		token = strtok(NULL, " ");
+		token = strtok(NULL, " \n");
 	}
 	tokens[i] = NULL;
 	return (tokens);
