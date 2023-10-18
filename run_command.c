@@ -35,6 +35,8 @@ int get_opcode(char *opcode)
 		return (MOD);
 	if (strcmp(opcode, "pchar") == 0)
 		return (PCHAR);
+	if (strcmp(opcode, "pstr") == 0)
+		return (PSTR);
 	return (INVALID_OPCODE);
 }
 /**
@@ -90,6 +92,9 @@ int run_command(char **arguments, int line_num)
 		break;
 	case PCHAR:
 		exit_code = pchar_op(line_num);
+		break;
+	case PSTR:
+		exit_code = pstr_op();
 		break;
 	default:
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);
