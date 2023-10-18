@@ -70,5 +70,4 @@ int sub(int line_number);
 int div_op(unsigned int line_number);
 int mul_op(unsigned int line_number);
 int mod_op(unsigned int line_number);
-int is_comment(char *line);
 #endif /* MONTY_H */

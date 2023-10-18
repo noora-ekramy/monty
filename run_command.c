@@ -23,7 +23,7 @@ int get_opcode(char *opcode)
 		return (SWAP);
 	if (strcmp(opcode, "add") == 0)
 		return (ADD);
-	if (strcmp(opcode, "nop") == 0)
+	if (strcmp(opcode, "nop") == 0 || opcode[0] == '#')
 		return (NOP);
 	if (strcmp(opcode, "sub") == 0)
 		return (SUB);
