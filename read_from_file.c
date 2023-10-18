@@ -10,8 +10,8 @@ int read_file(char *filename)
 	char *line = NULL;
 	size_t len = 0, exit_code = 0;
 	char **arguments;
-	int line_num = 0;
-	
+	int line_num = 1;
+
 	fp = fopen(filename, "r");
 	if (fp == NULL)
 	{
