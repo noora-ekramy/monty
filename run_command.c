@@ -30,7 +30,6 @@ int run_command(char **arguments, int line_num)
 
 	if (arguments[0] == NULL)
 	{
-		free(arguments);
 		return (EXIT_FAILURE);
 	}
 	exit_code = 0;
