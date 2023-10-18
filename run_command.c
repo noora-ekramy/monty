@@ -14,6 +14,12 @@ int get_opcode(char *opcode)
 		return (PINT);
 	if (strcmp(opcode, "pop") == 0)
 		return (POP);
+	if (strcmp(opcode, "swap") == 0)
+		return (SWAP);
+	if (strcmp(opcode, "add") == 0)
+		return (ADD);
+	if (strcmp(opcode, "nop") == 0)
+		return (NOP);
 
 	return (INVALID_OPCODE);
 }

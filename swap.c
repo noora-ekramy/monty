@@ -21,12 +21,10 @@ int swap(int line_number)
 		return (EXIT_FAILURE);
 	}
 
-	while (top->next != NULL)
-		top = top->next;
 
 	temp = top->n;
-	top->n = top->prev->n;
-	top->prev->n = temp;
+	top->n = top->next->n;
+	top->next->n = temp;
 
 	return (EXIT_SUCCESS);
 }
