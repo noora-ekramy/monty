@@ -49,10 +49,8 @@ int run_command(char **arguments, int line_num)
 		exit_code = pop(line_num);
 		break;
 	case SWAP:
-		exit_code = swap(line_num);
 		break;
 	case ADD:
-		exit_code = add(line_num);
 		break;
 	case NOP:
 		break;
