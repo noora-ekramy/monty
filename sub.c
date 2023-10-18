@@ -18,7 +18,7 @@ int sub(int line_number)
 
 	if (top == NULL || top->next == NULL)
 	{
-		fprintf(stderr, "L%i: can't add, stack too short\n", line_number);
+		fprintf(stderr, "L%i: can't sub, stack too short\n", line_number);
 		return (EXIT_FAILURE);
 	}
 
