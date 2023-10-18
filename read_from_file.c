@@ -25,9 +25,7 @@ int read_file(char *filename)
 		free(arguments);
 		if (exit_code == EXIT_FAILURE)
 		{
-			free(line);
-			free_stack();
-			exit(EXIT_FAILURE);
+			break;
 		}
 		else if (exit_code == EXIT_FAILURE + 1)
 			exit_code = EXIT_FAILURE;
