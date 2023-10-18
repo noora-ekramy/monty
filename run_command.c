@@ -31,6 +31,8 @@ int get_opcode(char *opcode)
 		return (DIV);
 	if (strcmp(opcode, "mul") == 0)
 		return (MUL);
+	if (strcmp(opcode, "mod") == 0)
+		return (MOD);
 	return (INVALID_OPCODE);
 }
 /**
@@ -80,6 +82,9 @@ int run_command(char **arguments, int line_num)
 		break;
 	case MUL:
 		exit_code = mul_op(line_num);
+		break;
+	case MOD:
+		exit_code = mod_op(line_num);
 		break;
 	default:
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);

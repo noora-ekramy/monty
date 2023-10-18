@@ -11,6 +11,7 @@
 #define SUB 7
 #define DIV 8
 #define MUL 9
+#define MOD 10
 #define INVALID_OPCODE -1
 
 #include <stdio.h>
@@ -68,4 +69,5 @@ void pall(stack_t *stack);
 int sub(int line_number);
 int div_op(unsigned int line_number);
 int mul_op(unsigned int line_number);
+int mod_op(unsigned int line_number);
 #endif /* MONTY_H */
