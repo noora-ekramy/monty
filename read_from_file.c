@@ -16,7 +16,7 @@ int read_file(char *filename)
 	if (fp == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
-		return (127);
+		return(127);
 	}
 	while ((getline(&line, &len, fp)) != -1)
 	{
@@ -26,6 +26,7 @@ int read_file(char *filename)
 		if (exit_code == EXIT_FAILURE)
 		{
 			free(line);
+			free_stack();
 			exit(EXIT_FAILURE);
 		}
 		line_num++;

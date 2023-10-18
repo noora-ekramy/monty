@@ -50,7 +50,7 @@ void pall(stack_t *stack);
 char **parse_arguments(char *input);
 int read_file(char *filename);
 int run_command(char **arguments, int line_num);
-void free_stack(stack_t *stack);
+void free_stack();
 int pint(int line_number);
 int pop(unsigned int line_number);
 int is_integer(char *str);
