@@ -13,24 +13,24 @@
  */
 int add(int line_number)
 {
-    int sum;
-    stack_t *top = globalStack;
+	int sum;
+	stack_t *top = globalStack;
 
-    if (top == NULL || top->next == NULL)
-    {
-        fprintf(stderr, "L%i: can't add, stack too short\n", line_number);
-        return (EXIT_FAILURE);
-    }
+	if (top == NULL || top->next == NULL)
+	{
+		fprintf(stderr, "L%i: can't add, stack too short\n", line_number);
+		return (EXIT_FAILURE);
+	}
 
-    while (top->next != NULL)
-        top = top->next;
+	while (top->next != NULL)
+		top = top->next;
 
-    sum = top->n;
-    sum += top->prev->n;
-    top->prev->n = sum;
+	sum = top->n;
+	sum += top->prev->n;
+	top->prev->n = sum;
 
-    top->prev->next = NULL;
-    free(top);
+	top->prev->next = NULL;
+	free(top);
 
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

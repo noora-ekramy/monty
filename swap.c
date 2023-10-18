@@ -12,21 +12,21 @@
  */
 int swap(int line_number)
 {
-    int temp;
-    stack_t *top = globalStack;
+	int temp;
+	stack_t *top = globalStack;
 
-    if (top == NULL || top->next == NULL)
-    {
-        fprintf(stderr, "L%i: can't swap, stack too short\n", line_number);
-        return (EXIT_FAILURE);
-    }
+	if (top == NULL || top->next == NULL)
+	{
+		fprintf(stderr, "L%i: can't swap, stack too short\n", line_number);
+		return (EXIT_FAILURE);
+	}
 
-    while (top->next != NULL)
-        top = top->next;
+	while (top->next != NULL)
+		top = top->next;
 
-    temp = top->n;
-    top->n = top->prev->n;
-    top->prev->n = temp;
+	temp = top->n;
+	top->n = top->prev->n;
+	top->prev->n = temp;
 
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
