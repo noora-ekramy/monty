@@ -48,10 +48,18 @@ int run_command(char **arguments, int line_num)
 	case POP:
 		exit_code = pop(line_num);
 		break;
+	case SWAP:
+		exit_code = swap(line_num);
+		break;
+	case ADD:
+		exit_code = add(line_num);
+		break;
+	case NOP:
+		break;
 	default:
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);
-		
-		return(EXIT_FAILURE);
+
+		return (EXIT_FAILURE);
 	}
 	return (exit_code);
 }

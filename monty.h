@@ -58,6 +58,8 @@ void free_stack();
 int push(char *str_value, int line_num);
 int pop(unsigned int line_number);
 int pint(int line_number);
+int swap(int line_number);
+int add(int line_number);
 void pall(stack_t *stack);
 
 #endif /* MONTY_H */
