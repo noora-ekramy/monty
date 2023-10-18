@@ -26,12 +26,6 @@ int run_command(char **arguments)
 {
 	int i = 0;
 	char *opcode;
-
-	while (arguments[i] != NULL)
-	{
-	printf(" arg %i :%s \n", i, arguments[i]);
-	i++;
-	}
 	if (arguments[0] == NULL)
 	{
 		fprintf(stderr, "Error: Empty command\n");
