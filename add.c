@@ -22,14 +22,13 @@ int add(int line_number)
 		return (EXIT_FAILURE);
 	}
 
-	while (top->next != NULL)
-		top = top->next;
 
 	sum = top->n;
-	sum += top->prev->n;
-	top->prev->n = sum;
+	sum += top->next->n;
+	top->next->n = sum;
 
-	top->prev->next = NULL;
+	top->next->prev = NULL;
+	globalStack = top->next;
 	free(top);
 
 	return (EXIT_SUCCESS);
