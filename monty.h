@@ -43,10 +43,10 @@ extern stack_t *globalStack;
 extern instruction_t instructions[];
 
 int get_opcode(char *opcode);
-void push(char *str_value);
+void push(char *str_value, int line_num);
 void pall(stack_t *stack);
-int read_file(char *filename);
 char **parse_arguments(char *input);
-int run_command(char **arguments);
+int read_file(char *filename);
+int run_command(char **arguments, int line_num);
 void free_stack(stack_t *stack);
 #endif /* MONTY_H */

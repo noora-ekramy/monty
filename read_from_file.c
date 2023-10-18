@@ -10,18 +10,20 @@ int read_file(char *filename)
 	char *line = NULL;
 	size_t len = 0, exit_code = 0;
 	char **arguments;
-
+	int line_num = 0;
+	
 	fp = fopen(filename, "r");
 	if (fp == NULL)
 	{
-		fprintf(stderr, "./monty: 0: Can't open %s\n", filename);
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		return (127);
 	}
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		arguments = parse_arguments(line);
-		exit_code = run_command(arguments);
+		exit_code = run_command(arguments , line_num);
 		free(arguments);
+		line_num++;
 
 	}
 	if (line != NULL)

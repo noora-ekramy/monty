@@ -8,14 +8,14 @@
  * of an integer to an actual integer
  * and pushes it onto the stack.
  */
-void push(char *str_value)
+void push(char *str_value, int line_num)
 {
 	int value;
 	stack_t *new_node;
 
 	if (str_value == NULL)
 	{
-		fprintf(stderr, "Error: usage: push integer\n");
+		fprintf(stderr, "L%i: usage: push integer\n", line_num);
 		exit(EXIT_FAILURE);
 	}
 

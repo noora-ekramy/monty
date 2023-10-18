@@ -22,7 +22,7 @@ int get_opcode(char *opcode)
  * @arguments: An array of strings containing the command and its arguments.
  * Return: 0 on success, exits with EXIT_FAILURE on error.
  */
-int run_command(char **arguments)
+int run_command(char **arguments, int line_num)
 {
 	char *opcode;
 	if (arguments[0] == NULL)
@@ -34,13 +34,13 @@ int run_command(char **arguments)
 	switch (get_opcode(opcode))
 	{
 		case PUSH:
-			push(arguments[1]);
+			push(arguments[1], line_num);
 			break;
 		case PALL:
 			pall(globalStack);
 			break;
 		default:
-			fprintf(stderr, "Error: Unknown instruction: %s\n", opcode);
+			fprintf(stderr, "L%i: unknown instruction %s\n", line_num , opcode);
 			exit(EXIT_FAILURE);
 	}
 	return (0);
