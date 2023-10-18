@@ -12,6 +12,8 @@ int get_opcode(char *opcode)
 		return (PALL);
 	if (strcmp(opcode, "pint") == 0)
 		return (PINT);
+	if (strcmp(opcode, "pop") == 0)
+		return (POP);
 
 	return (INVALID_OPCODE);
 }
@@ -39,6 +41,9 @@ int run_command(char **arguments, int line_num)
 		break;
 	case PINT:
 		pint(line_num);
+		break;
+	case POP:
+		pop(line_num);
 		break;
 	default:
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);

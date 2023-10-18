@@ -89,3 +89,26 @@ void pint(int line_number)
 	}
 	printf("%d\n", globalStack->n);
 }
+/**
+ * pop - Removes the top element of the stack.
+ * If the stack is empty, print an error message and exit with EXIT_FAILURE.
+ * @line_number: Line number in the Monty file where the pop opcode appears.
+ */
+void pop(unsigned int line_number)
+{
+	if (globalStack == NULL)
+	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	stack_t *temp = globalStack;
+	globalStack = globalStack->next;
+
+	if (globalStack != NULL)
+	{
+		globalStack->prev = NULL;
+	}
+
+	free(temp);
+}

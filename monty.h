@@ -4,6 +4,7 @@
 #define PUSH 1
 #define PALL 2
 #define PINT 3
+#define POP 4
 #define INVALID_OPCODE -1
 
 #include <stddef.h>
@@ -51,4 +52,5 @@ int read_file(char *filename);
 int run_command(char **arguments, int line_num);
 void free_stack(stack_t *stack);
 void pint(int line_number);
+void pop(unsigned int line_number);
 #endif /* MONTY_H */
