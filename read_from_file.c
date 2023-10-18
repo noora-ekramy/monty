@@ -22,8 +22,6 @@ int read_file(char *filename)
 	{
 		
 		arguments = parse_arguments(line);
-		if(is_comment(arguments[0]))
-			continue;
 		exit_code = run_command(arguments, line_num);
 		free(arguments);
 		if (exit_code == EXIT_FAILURE)
