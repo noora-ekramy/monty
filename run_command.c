@@ -22,7 +22,8 @@ int get_opcode(char *opcode)
 		return (NOP);
 	if (strcmp(opcode, "sub") == 0)
 		return (SUB);
-
+	if (strcmp(opcode, "div") == 0)
+		return (DIV);
 	return (INVALID_OPCODE);
 }
 /**
@@ -67,9 +68,11 @@ int run_command(char **arguments, int line_num)
 	case SUB:
 		exit_code = sub(line_num);
 		break;
+	case DIV:
+		exit_code = div_op(line_num);
+		break;
 	default:
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);
-
 		return (EXIT_FAILURE);
 	}
 	return (exit_code);
