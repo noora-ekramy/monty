@@ -12,7 +12,12 @@ int main(int argc, char *argv[])
 {
 
 	int exit_code = 0;
-
+	
+	if (argc != 2)
+	{
+		print_err("USAGE: monty file\n");
+		return (EXIT_FAILURE);
+	}
 	if (argc == 2)
 	{
 		exit_code = read_file(argv[1]);
