@@ -45,12 +45,13 @@ extern stack_t *globalStack;
 extern instruction_t instructions[];
 
 int get_opcode(char *opcode);
-void push(char *str_value, int line_num);
+int push(char *str_value, int line_num);
 void pall(stack_t *stack);
 char **parse_arguments(char *input);
 int read_file(char *filename);
 int run_command(char **arguments, int line_num);
 void free_stack(stack_t *stack);
-void pint(int line_number);
-void pop(unsigned int line_number);
+int pint(int line_number);
+int pop(unsigned int line_number);
+int is_integer(char *str);
 #endif /* MONTY_H */

@@ -8,15 +8,15 @@
  * of an integer to an actual integer
  * and pushes it onto the stack.
  */
-void push(char *str_value, int line_num)
+int push(char *str_value, int line_num)
 {
 	int value;
 	stack_t *new_node;
 
-	if (str_value == NULL)
+	if (str_value == NULL || is_integer(str_value) == 0)
 	{
 		fprintf(stderr, "L%i: usage: push integer\n", line_num);
-		exit(EXIT_FAILURE);
+		return(EXIT_FAILURE);
 	}
 
 	value = atoi(str_value);
@@ -24,7 +24,7 @@ void push(char *str_value, int line_num)
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		return(EXIT_FAILURE);
 	}
 
 	new_node->n = value;
@@ -40,6 +40,7 @@ void push(char *str_value, int line_num)
 	}
 
 	globalStack = new_node;
+	return(0);
 }
 /**
  * pall - Prints all the elements of the stack.
@@ -80,28 +81,29 @@ void free_stack(stack_t *stack)
  * If the stack is empty, print an error message and exit with EXIT_FAILURE.
  * @line_number: Line number in the Monty file where the pint opcode appears.
  */
-void pint(int line_number)
+int pint(int line_number)
 {
 	if (globalStack == NULL)
 	{
 		fprintf(stderr, "L%i: can't pint, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
+		return(EXIT_FAILURE);
 	}
 	printf("%d\n", globalStack->n);
+	return (0);
 }
 /**
  * pop - Removes the top element of the stack.
  * If the stack is empty, print an error message and exit with EXIT_FAILURE.
  * @line_number: Line number in the Monty file where the pop opcode appears.
  */
-void pop(unsigned int line_number)
+int pop(unsigned int line_number)
 {
 	stack_t *temp;
-	
+
 	if (globalStack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
-		exit(EXIT_FAILURE);
+		return(EXIT_FAILURE);
 	}
 
 	temp = globalStack;
@@ -113,4 +115,5 @@ void pop(unsigned int line_number)
 	}
 
 	free(temp);
+	return (0);
 }

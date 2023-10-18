@@ -26,27 +26,37 @@ int get_opcode(char *opcode)
 int run_command(char **arguments, int line_num)
 {
 	char *opcode;
+	int exit_code;
+
 	if (arguments[0] == NULL)
 	{
+		free(arguments);
 		return (EXIT_FAILURE);
 	}
+	exit_code = 0;
 	opcode = arguments[0];
 	switch (get_opcode(opcode))
 	{
 	case PUSH:
-		push(arguments[1], line_num);
+		exit_code = push(arguments[1], line_num);
 		break;
 	case PALL:
 		pall(globalStack);
 		break;
 	case PINT:
-		pint(line_num);
+		exit_code = pint(line_num);
 		break;
 	case POP:
-		pop(line_num);
+		exit_code = pop(line_num);
 		break;
 	default:
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);
+		free(arguments);
+		exit(EXIT_FAILURE);
+	}
+	if(exit_code == EXIT_FAILURE)
+	{
+		free(arguments);
 		exit(EXIT_FAILURE);
 	}
 	return (0);
