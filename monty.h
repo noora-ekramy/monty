@@ -21,7 +21,6 @@
 #include <stddef.h>
 #include <string.h>
 #include <ctype.h>
-#include <stdbool.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -53,27 +52,26 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern stack_t *stack;
+extern stack_t *globalStack;
 extern instruction_t instructions[];
 
-void interpret_file(char *filename);
-char **parse_line(char *line);
-bool is_integer(char *str);
-int opcode_to_const(char *opcode);
-void run_command(char **arguments, unsigned int line_number);
-void free_stack(void);
+int read_file(char *filename);
+char **parse_arguments(char *input);
+int is_integer(char *str);
+int get_opcode(char *opcode);
+int run_command(char **arguments, int line_num);
+void free_stack();
 
-int push(char *integer, unsigned int line_number);
+int push(char *str_value, int line_num);
 int pop(unsigned int line_number);
-int pint(unsigned int line_number);
-int pchar(unsigned int line_number);
-int pstr(void);
-void pall(void);
-int swap(unsigned int line_number);
-int add(unsigned int line_number);
-int sub(unsigned int line_number);
-int mul(unsigned int line_number);
+int pint(int line_number);
+int swap(int line_number);
+int add(int line_number);
+void pall(stack_t *stack);
+int sub(int line_number);
 int div_op(unsigned int line_number);
-int mod(unsigned int line_number);
-
+int mul_op(unsigned int line_number);
+int mod_op(unsigned int line_number);
+int pchar_op(int line_number);
+int pstr_op();
 #endif /* MONTY_H */

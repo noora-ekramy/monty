@@ -1,15 +1,22 @@
 #include "monty.h"
 
 /**
- * mod - Mods top two elements of stack, pops them, and pushes remainder.
+ * mod_op - Computes the rest of the division of the second top element of
+ *          the stack by the top element.
  * @line_number: The line number of the current instruction.
+ *
+ * This function computes the rest of the division of the second top element
+ * of the stack by the top element and replaces the second top node with the
+ * result. If the stack does not have at least two elements or if the top
+ * element is 0, it prints the appropriate error message to stderr and
+ * returns EXIT_FAILURE.
  *
  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure.
  */
-int mod(unsigned int line_number)
+int mod_op(unsigned int line_number)
 {
 	int result;
-	stack_t *top = stack;
+	stack_t *top = globalStack;
 
 	if (top == NULL || top->next == NULL)
 	{
@@ -27,7 +34,7 @@ int mod(unsigned int line_number)
 	top->next->n = result;
 
 	top->next->prev = NULL;
-	stack = top->next;
+	globalStack = top->next;
 	free(top);
 
 	return (EXIT_SUCCESS);

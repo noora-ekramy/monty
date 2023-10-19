@@ -1,97 +1,104 @@
 #include "monty.h"
-
 /**
- * run_command_complement - Execute the rest of Monty bytecode commands.
- * @arguments: An array of strings containing command arguments.
- * @line_number: The line number of the current Monty bytecode instruction.
- *
- * Return: Nothing.
+ * get_opcode - Maps an opcode string to its corresponding integer constant.
+ * @opcode: The opcode string to be mapped.
+ * Return: The corresponding integer constant for the opcode.
  */
-void run_command_complement(char **arguments, unsigned int line_number)
+int get_opcode(char *opcode)
 {
-	char *argument;
-	short int exit_code = EXIT_SUCCESS;
+	char *p;
 
-	switch (opcode_to_const(arguments[0]))
-	{
-	case ADD:
-		exit_code = add(line_number);
-		break;
-	case SUB:
-		exit_code = sub(line_number);
-		break;
-	case MUL:
-		exit_code = mul(line_number);
-		break;
-	case DIV:
-		exit_code = div_op(line_number);
-		break;
-	case MOD:
-		exit_code = mod(line_number);
-		break;
-	default:
-		fprintf(stderr, "L%i: unknown instruction %s\n", line_number, arguments[0]);
-		free_stack();
-		exit(EXIT_FAILURE);
-	}
+	for (p = opcode; *p; ++p)
+		*p = tolower(*p);
 
-	if (exit_code == EXIT_FAILURE)
-	{
-		for (argument = *arguments; argument; argument++)
-			free(argument);
-
-		free(arguments);
-		free_stack();
-	}
+	if (strcmp(opcode, "push") == 0)
+		return (PUSH);
+	if (strcmp(opcode, "pall") == 0)
+		return (PALL);
+	if (strcmp(opcode, "pint") == 0)
+		return (PINT);
+	if (strcmp(opcode, "pop") == 0)
+		return (POP);
+	if (strcmp(opcode, "swap") == 0)
+		return (SWAP);
+	if (strcmp(opcode, "add") == 0)
+		return (ADD);
+	if (strcmp(opcode, "nop") == 0 || opcode[0] == '#')
+		return (NOP);
+	if (strcmp(opcode, "sub") == 0)
+		return (SUB);
+	if (strcmp(opcode, "div") == 0)
+		return (DIV);
+	if (strcmp(opcode, "mul") == 0)
+		return (MUL);
+	if (strcmp(opcode, "mod") == 0)
+		return (MOD);
+	if (strcmp(opcode, "pchar") == 0)
+		return (PCHAR);
+	if (strcmp(opcode, "pstr") == 0)
+		return (PSTR);
+	return (INVALID_OPCODE);
 }
-
 /**
- * run_command - Execute a Monty bytecode command.
- * @arguments: An array of strings containing command arguments.
- * @line_number: The line number of the current Monty bytecode instruction.
- *
- * Return: Nothing.
+ * run_command - Executes a Monty language command based
+ * on the provided arguments.
+ * @arguments: An array of strings containing the command and its arguments.
+ * Return: 0 on success, exits with EXIT_FAILURE on error.
  */
-void run_command(char **arguments, unsigned int line_number)
+int run_command(char **arguments, int line_num)
 {
-	char *argument;
-	short int exit_code = EXIT_SUCCESS;
+	char *opcode;
+	int exit_code;
 
 	if (arguments[0] == NULL)
-		exit(EXIT_FAILURE);
-	switch (opcode_to_const(arguments[0]))
+	{
+		return (0);
+	}
+	exit_code = 0;
+	opcode = arguments[0];
+	switch (get_opcode(opcode))
 	{
 	case PUSH:
-		exit_code = (arguments[1], line_number);
-		break;
-	case POP:
-		exit_code = pop(line_number);
-		break;
-	case PINT:
-		exit_code = pint(line_number);
-		break;
-	case PCHAR:
-		exit_code = pchar(line_number);
-		break;
-	case PSTR:
-		exit_code = pstr();
+		exit_code = push(arguments[1], line_num);
 		break;
 	case PALL:
-		pall();
+		pall(globalStack);
+		break;
+	case PINT:
+		exit_code = pint(line_num);
+		break;
+	case POP:
+		exit_code = pop(line_num);
 		break;
 	case SWAP:
-		exit_code = swap(line_number);
+		exit_code = swap(line_num);
+		break;
+	case ADD:
+		exit_code = add(line_num);
 		break;
 	case NOP:
 		break;
+	case SUB:
+		exit_code = sub(line_num);
+		break;
+	case DIV:
+		exit_code = div_op(line_num);
+		break;
+	case MUL:
+		exit_code = mul_op(line_num);
+		break;
+	case MOD:
+		exit_code = mod_op(line_num);
+		break;
+	case PCHAR:
+		exit_code = pchar_op(line_num);
+		break;
+	case PSTR:
+		exit_code = pstr_op();
+		break;
 	default:
-		run_command_complement(arguments, line_number);
+		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);
+		return (EXIT_FAILURE);
 	}
-	if (exit_code == EXIT_FAILURE)
-	{
-		for (argument = *arguments; argument; argument++)
-			free(argument);
-		free(arguments);
-		free_stack();
-	}
+	return (exit_code);
 }

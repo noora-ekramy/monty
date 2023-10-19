@@ -1,28 +1,34 @@
 #include "monty.h"
 
 /**
- * sub - Subtracts top two elements of stack, pops them, and pushes difference.
+ * add - subtracts top two elements of the stack, pops them, and pushes the sum.
  * @line_number: The line number of the current instruction.
+ *
+ * This function subtracts the top two elements of the stack represented by the
+ * globalStack and replaces the top node with the sum. If the stack does not
+ * have at least two elements, it prints an error message to stderr and
+ * returns EXIT_FAILURE.
  *
  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure.
  */
-int sub(unsigned int line_number)
+int sub(int line_number)
 {
-	int difference;
-	stack_t *top = stack;
+	int sum;
+	stack_t *top = globalStack;
 
 	if (top == NULL || top->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%i: can't sub, stack too short\n", line_number);
 		return (EXIT_FAILURE);
 	}
 
-	difference = top->n;
-	difference = top->next->n - difference;
-	top->next->n = difference;
+
+	sum = top->n;
+	sum = top->next->n - sum;
+	top->next->n = sum;
 
 	top->next->prev = NULL;
-	stack = top->next;
+	globalStack = top->next;
 	free(top);
 
 	return (EXIT_SUCCESS);
