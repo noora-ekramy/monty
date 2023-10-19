@@ -13,29 +13,19 @@
 int rotl_op()
 {
 	stack_t *top = globalStack;
-    int i = 0;
+	stack_t *second = NULL;
 
-    int myArray[1024];
-	if (top == NULL)
+	if (top == NULL || top->next == NULL)
 		return (EXIT_SUCCESS);
 
-    myArray[i] = top->n;
-    
+	second = top->next;
+	while (second->next != NULL)
+		second = second->next;
 
-	while (top->next != NULL)
-    {
-        i++;
-		myArray[i] = top->next->n;
-        top = top->next;
-    }
+	second->next = top;
+    globalStack = top->next;
+	top->prev = second;
+	top->next = NULL;
 
-    i = 0;
-    top->n = myArray[i];
-    while (top->prev != NULL)
-    {
-        i++;
-		top->prev->n = myArray[i];
-        top = top->prev;
-    }
 	return (EXIT_SUCCESS);
 }
