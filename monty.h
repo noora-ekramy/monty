@@ -14,6 +14,7 @@
 #define MOD 10
 #define PCHAR 11
 #define PSTR 12
+#define ROTL 13
 #define INVALID_OPCODE -1
 
 #include <stdio.h>
@@ -74,4 +75,5 @@ int mul_op(unsigned int line_number);
 int mod_op(unsigned int line_number);
 int pchar_op(int line_number);
 int pstr_op();
+int rotl_op();
 #endif /* MONTY_H */
