@@ -66,9 +66,15 @@ int run_command(char **arguments, int line_num)
 	{
 	case STACK:
 		dataStructuer = STACK;
+		/*tmp = memStackHead;
+		memStackHead = memStackTail;
+		memStackTail = tmp;*/
 		break;
 	case QUEUE:
 		dataStructuer = QUEUE;
+		/*tmp = memStackHead;
+		memStackHead = memStackTail;
+		memStackTail = tmp;*/
 		break;
 	case Basic_Fun:
 		exit_code = runbasic_op(arguments[0], line_num, arguments); 

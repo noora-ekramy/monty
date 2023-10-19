@@ -1,5 +1,31 @@
 #include "monty.h"
-
+/**
+ * runbasic_op - Executes basic stack operations based on the provided opcode.
+ * @function: The opcode to be executed (e.g., "push", "pall", "pint", "pop").
+ * @lineNum: The line number of the current opcode in the input file.
+ * @arguments: An array of strings containing arguments associated with the opcode.
+ *
+ * This function interprets the given opcode and performs the corresponding
+ * operation on the stack. It supports basic stack operations like push, pop,
+ * pall, and pint. If the opcode is valid and the operation is successful, the
+ * function returns 0; otherwise, it returns a non-zero exit code.
+ *
+ * @function must be one of the following:
+ *   - "push": Pushes the integer value specified in @arguments[1] onto the stack.
+ *   - "pall": Prints all the values on the stack, starting from the top.
+ *   - "pint": Prints the value at the top of the stack.
+ *   - "pop": Removes the top element of the stack.
+ *
+ * @lineNum: The line number in the input file where the opcode appears.
+ * @arguments: An array of strings containing the arguments for the opcode.
+ *              - For "push" opcode, arguments[1] should contain the integer value to be pushed.
+ *              - For other opcodes, arguments can be NULL or ignored.
+ *
+ * Return: 0 on successful execution of the opcode, non-zero on failure.
+ *         - For push, non-zero indicates failure to push the value onto the stack.
+ *         - For pint and pop, non-zero indicates an empty stack error.
+ *         - For other opcodes, non-zero indicates an invalid or unsupported opcode error.
+ */
 int runbasic_op(char *function, int lineNum, char **arguments)
 {
     int exit_code = 0;
@@ -94,6 +120,7 @@ int push(char *str_value, int line_num)
             new_node->prev = NULL;
             memStackHead = new_node;
         }
+        memStackTail = new_node;
     }
     return (0);
 }
@@ -107,24 +134,13 @@ void pall()
 {
     stack_t *current;
 
-    if (dataStructuer == STACK)
+    current = memStackHead;
+    while (current != NULL)
     {
-        current = memStackHead;
-        while (current != NULL)
-        {
-            printf("%d\n", current->n);
-            current = current->next;
-        }
+        printf("%d\n", current->n);
+        current = current->next;
     }
-    else
-    {
-        current = memStackTail;
-        while (current != NULL)
-        {
-            printf("%d\n", current->n);
-            current = current->prev;
-        }
-    }
+
 }
 
 /**

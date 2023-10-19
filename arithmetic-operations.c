@@ -1,5 +1,4 @@
 #include "monty.h"
-
 /**
  * add - Adds top two elements of the stack, pops them, and pushes the sum.
  * @line_number: The line number of the current instruction.
@@ -14,21 +13,24 @@
 int add(int line_number)
 {
 	int sum;
-	stack_t *top = memStackHead;
+	stack_t *top;
+	
+		top = memStackHead;
+		if (top == NULL || top->next == NULL)
+		{
+			fprintf(stderr, "L%i: can't add, stack too short\n", line_number);
+			return (EXIT_FAILURE);
+		}		
+		sum = top->n;
+		sum += top->next->n;
 
-	if (top == NULL || top->next == NULL)
-	{
-		fprintf(stderr, "L%i: can't add, stack too short\n", line_number);
-		return (EXIT_FAILURE);
-	}
+		
+		top->next->n = sum;
 
-	sum = top->n;
-	sum += top->next->n;
-	top->next->n = sum;
+		top->next->prev = NULL;
+		memStackHead = top->next;
+		free(top);
 
-	top->next->prev = NULL;
-	memStackHead = top->next;
-	free(top);
 
 	return (EXIT_SUCCESS);
 }
