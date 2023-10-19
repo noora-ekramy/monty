@@ -2,16 +2,16 @@
 
 /**
  * pall - Prints all the elements of the stack.
- * @stack: A pointer to the top of the stack.
- * This function prints all the elements of the stack, starting from the top.
+ *
+ * Return: Nothing.
  */
-void pall(stack_t *stack)
+void pall(void)
 {
-	stack_t *current = stack;
+	stack_t *top = stack;
 
-	while (current != NULL)
+	while (top != NULL)
 	{
-		printf("%d\n", current->n);
-		current = current->next;
+		printf("%d\n", top->n);
+		top = top->next;
 	}
 }

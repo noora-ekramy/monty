@@ -6,21 +6,21 @@
  */
 int is_integer(char *str)
 {
-    if (str == NULL || *str == '\0')
-    {
-        return 0;
-    }
-    if (*str == '-' || *str == '+')
-    {
-        str++;
-    }
-    while (*str != '\0')
-    {
-        if (*str < '0' || *str > '9')
-        {
-            return 0;
-        }
-        str++;
-    }
-    return 1;
+	if (str == NULL || *str == '\0')
+	{
+		return 0;
+	}
+	if (*str == '-' || *str == '+')
+	{
+		str++;
+	}
+	while (*str != '\0')
+	{
+		if (*str < '0' || *str > '9')
+		{
+			return 0;
+		}
+		str++;
+	}
+	return 1;
 }

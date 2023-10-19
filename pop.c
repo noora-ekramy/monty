@@ -2,27 +2,27 @@
 
 /**
  * pop - Removes the top element of the stack.
- * If the stack is empty, print an error message and exit with EXIT_FAILURE.
- * @line_number: Line number in the Monty file where the pop opcode appears.
+ * @line_number: The line number of the current instruction.
+ *
+ * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure.
  */
 int pop(unsigned int line_number)
 {
-	stack_t *temp;
+	stack_t *top;
 
 	if (stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
-		return(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 
-	temp = stack;
+	top = stack;
 	stack = stack->next;
 
 	if (stack != NULL)
-	{
 		stack->prev = NULL;
-	}
 
-	free(temp);
+	free(top);
+
 	return (0);
 }
