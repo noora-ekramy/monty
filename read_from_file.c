@@ -22,6 +22,7 @@ int read_file(char *filename)
 		exit_stat = execute(line, line_num);
 		if (exit_stat == EXIT_FAILURE)
 			break;
+		line_num++;
 	}
 
 	if (line != NULL)
