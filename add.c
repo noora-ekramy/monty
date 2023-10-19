@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * add - Adds top two elements of the stack, pops them, and pushes the sum.
+ * add - Adds top two elements of stack, pops them, and pushes the sum.
  * @line_number: The line number of the current instruction.
  *
  * This function adds the top two elements of the stack represented by the
