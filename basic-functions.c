@@ -9,9 +9,9 @@ int runbasic_op(char *function, int lineNum, char **arguments)
     if (strcmp(function, "pall") == 0)
         pall();
     if (strcmp(function, "pint") == 0)
-        pint(lineNum);
+        exit_code = pint(lineNum);
     if (strcmp(function, "pop") == 0)
-        pop(lineNum);
+        exit_code = pop(lineNum);
 
     return (exit_code);
 }
