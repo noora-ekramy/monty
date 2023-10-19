@@ -9,31 +9,39 @@
  */
 void run_command_complement(char **arguments, unsigned int line_number)
 {
-	unsigned short int opcode_const;
+	char *argument;
+	short int exit_code = EXIT_SUCCESS;
 
-	opcode_const = opcode_to_const(arguments[0]);
-
-	switch (opcode_const)
+	switch (opcode_to_const(arguments[0]))
 	{
 	case ADD:
-		add(line_number);
+		exit_code = add(line_number);
 		break;
 	case SUB:
-		sub(line_number);
+		exit_code = sub(line_number);
 		break;
 	case MUL:
-		mul(line_number);
+		exit_code = mul(line_number);
 		break;
 	case DIV:
-		div_op(line_number);
+		exit_code = div_op(line_number);
 		break;
 	case MOD:
-		mod(line_number);
+		exit_code = mod(line_number);
 		break;
 	default:
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_number, arguments[0]);
 		free_stack();
 		exit(EXIT_FAILURE);
+	}
+
+	if (exit_code == EXIT_FAILURE)
+	{
+		for (argument = *arguments; argument; argument++)
+			free(argument);
+
+		free(arguments);
+		free_stack();
 	}
 }
 
@@ -46,39 +54,44 @@ void run_command_complement(char **arguments, unsigned int line_number)
  */
 void run_command(char **arguments, unsigned int line_number)
 {
-	unsigned short int opcode_const;
+	char *argument;
+	short int exit_code = EXIT_SUCCESS;
 
 	if (arguments[0] == NULL)
 		exit(EXIT_FAILURE);
-
-	opcode_const = opcode_to_const(arguments[0]);
-
-	switch (opcode_const)
+	switch (opcode_to_const(arguments[0]))
 	{
 	case PUSH:
-		push(arguments[1], line_number);
+		exit_code = (arguments[1], line_number);
 		break;
 	case POP:
-		pop(line_number);
+		exit_code = pop(line_number);
 		break;
 	case PINT:
-		pint(line_number);
+		exit_code = pint(line_number);
 		break;
 	case PCHAR:
-		pchar(line_number);
+		exit_code = pchar(line_number);
 		break;
 	case PSTR:
-		pstr();
+		exit_code = pstr();
 		break;
 	case PALL:
 		pall();
 		break;
 	case SWAP:
-		swap(line_number);
+		exit_code = swap(line_number);
 		break;
 	case NOP:
 		break;
 	default:
 		run_command_complement(arguments, line_number);
+	}
+	if (exit_code == EXIT_FAILURE)
+	{
+		for (argument = *arguments; argument; argument++)
+			free(argument);
+		free(arguments);
+		free_stack();
 	}
 }
