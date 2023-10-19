@@ -7,7 +7,7 @@
  *
  * Return: Nothing.
  */
-void run_command_complement(char **arguments, int line_number)
+void run_command_complement(char **arguments, unsigned int line_number)
 {
 	unsigned short int opcode_const;
 
@@ -44,7 +44,7 @@ void run_command_complement(char **arguments, int line_number)
  *
  * Return: Nothing.
  */
-void run_command(char **arguments, int line_number)
+void run_command(char **arguments, unsigned int line_number)
 {
 	unsigned short int opcode_const;
 

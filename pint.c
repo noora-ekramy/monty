@@ -6,7 +6,7 @@
  *
  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure.
  */
-int pint(int line_number)
+int pint(unsigned int line_number)
 {
 	if (stack == NULL)
 	{

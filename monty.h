@@ -21,6 +21,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -57,20 +58,20 @@ extern instruction_t instructions[];
 
 void interpret_file(char *filename);
 char **parse_line(char *line);
-int is_integer(char *str);
+bool is_integer(char *str);
 int opcode_to_const(char *opcode);
-void run_command(char **arguments, int line_number);
+void run_command(char **arguments, unsigned int line_number);
 void free_stack(void);
 
-int push(char *str_value, int line_number);
+int push(char *integer, unsigned int line_number);
 int pop(unsigned int line_number);
-int pint(int line_number);
-int pchar(int line_number);
-int pstr();
+int pint(unsigned int line_number);
+int pchar(unsigned int line_number);
+int pstr(void);
 void pall(void);
-int swap(int line_number);
-int add(int line_number);
-int sub(int line_number);
+int swap(unsigned int line_number);
+int add(unsigned int line_number);
+int sub(unsigned int line_number);
 int mul(unsigned int line_number);
 int div_op(unsigned int line_number);
 int mod(unsigned int line_number);
