@@ -10,15 +10,18 @@ int get_opcode(char *opcode)
 
 	for (p = opcode; *p; ++p)
 		*p = tolower(*p);
-
-	if (strcmp(opcode, "push") == 0)
-		return (PUSH);
-	if (strcmp(opcode, "pall") == 0)
-		return (PALL);
-	if (strcmp(opcode, "pint") == 0)
-		return (PINT);
-	if (strcmp(opcode, "pop") == 0)
-		return (POP);
+	/*format state*/
+	if (strcmp(opcode, "stack") == 0)
+		return (STACK);
+	if (strcmp(opcode, "queue") == 0)
+		return (QUEUE);
+	/*basic functions*/
+	if (strcmp(opcode, "push" ) == 0 ||
+	strcmp(opcode, "pall") == 0 ||
+	strcmp(opcode, "pint") == 0 ||
+	strcmp(opcode, "pop") == 0)
+		return (Basic_Fun);
+	/*arithmetic-operations.c*/
 	if (strcmp(opcode, "swap") == 0)
 		return (SWAP);
 	if (strcmp(opcode, "add") == 0)
@@ -33,14 +36,17 @@ int get_opcode(char *opcode)
 		return (MUL);
 	if (strcmp(opcode, "mod") == 0)
 		return (MOD);
+	/*print functions*/
 	if (strcmp(opcode, "pchar") == 0)
 		return (PCHAR);
 	if (strcmp(opcode, "pstr") == 0)
 		return (PSTR);
+	/*rotate functions*/
 	if (strcmp(opcode, "rotl") == 0)
 		return (ROTL);
 	if (strcmp(opcode, "rotr") == 0)
 		return (ROTR);
+
 	return (INVALID_OPCODE);
 }
 /**
@@ -52,27 +58,20 @@ int get_opcode(char *opcode)
 int run_command(char **arguments, int line_num)
 {
 	char *opcode;
-	int exit_code;
-
+	int exit_code = 0;
 	if (arguments[0] == NULL)
-	{
 		return (0);
-	}
-	exit_code = 0;
 	opcode = arguments[0];
 	switch (get_opcode(opcode))
 	{
-	case PUSH:
-		exit_code = push(arguments[1], line_num);
+	case STACK:
+		dataStructuer = STACK;
 		break;
-	case PALL:
-		pall(globalStack);
+	case QUEUE:
+		dataStructuer = QUEUE;
 		break;
-	case PINT:
-		exit_code = pint(line_num);
-		break;
-	case POP:
-		exit_code = pop(line_num);
+	case Basic_Fun:
+		exit_code = runbasic_op(arguments[0], line_num, arguments); 
 		break;
 	case SWAP:
 		exit_code = swap(line_num);

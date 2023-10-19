@@ -8,35 +8,36 @@ int read_file(char *filename)
 {
 	FILE *fp;
 	char *line = NULL;
-	size_t len = 0, exit_code = 0;
-	char **arguments;
+	size_t len = 0, exit_stat = 0;
 	int line_num = 1;
 
 	fp = fopen(filename, "r");
 	if (fp == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
-		return(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 	while ((getline(&line, &len, fp)) != -1)
 	{
-		
-		arguments = parse_arguments(line);
-		exit_code = run_command(arguments, line_num);
-		free(arguments);
-		if (exit_code == EXIT_FAILURE)
-		{
+		exit_stat = execute(line, line_num);
+		if (exit_stat == EXIT_FAILURE)
 			break;
-		}
-		else if (exit_code == EXIT_FAILURE + 1)
-			exit_code = EXIT_FAILURE;
-		line_num++;
 	}
+
 	if (line != NULL)
 		free(line);
 	fclose(fp);
+	return (exit_stat);
+}
+int execute(char *line, int line_num)
+{
+	int exit_stat = 0;
+	char **arguments;
 
-	return (exit_code);
+	arguments = parse_arguments(line);
+	exit_stat = run_command(arguments, line_num);
+	free(arguments);
+	return (exit_stat);
 }
 /**
  * parse_arguments - git the input

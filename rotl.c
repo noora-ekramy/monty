@@ -12,7 +12,7 @@
  */
 int rotl_op()
 {
-	stack_t *top = globalStack;
+	stack_t *top = memStackHead;
 	stack_t *second = NULL;
 
 	if (top == NULL || top->next == NULL)
@@ -23,7 +23,7 @@ int rotl_op()
 		second = second->next;
 
 	second->next = top;
-    globalStack = top->next;
+    memStackHead = top->next;
 	top->prev = second;
 	top->next = NULL;
 

@@ -14,7 +14,7 @@
 int add(int line_number)
 {
 	int sum;
-	stack_t *top = globalStack;
+	stack_t *top = memStackHead;
 
 	if (top == NULL || top->next == NULL)
 	{
@@ -27,7 +27,7 @@ int add(int line_number)
 	top->next->n = sum;
 
 	top->next->prev = NULL;
-	globalStack = top->next;
+	memStackHead = top->next;
 	free(top);
 
 	return (EXIT_SUCCESS);
@@ -48,7 +48,7 @@ int add(int line_number)
 int div_op(unsigned int line_number)
 {
     int result;
-    stack_t *top = globalStack;
+    stack_t *top = memStackHead;
 
     if (top == NULL || top->next == NULL)
     {
@@ -66,7 +66,7 @@ int div_op(unsigned int line_number)
     top->next->n = result;
 
     top->next->prev = NULL;
-    globalStack = top->next;
+    memStackHead = top->next;
     free(top);
 
     return (EXIT_SUCCESS);
@@ -89,7 +89,7 @@ int div_op(unsigned int line_number)
 int mod_op(unsigned int line_number)
 {
 	int result;
-	stack_t *top = globalStack;
+	stack_t *top = memStackHead;
 
 	if (top == NULL || top->next == NULL)
 	{
@@ -107,7 +107,7 @@ int mod_op(unsigned int line_number)
 	top->next->n = result;
 
 	top->next->prev = NULL;
-	globalStack = top->next;
+	memStackHead = top->next;
 	free(top);
 
 	return (EXIT_SUCCESS);
@@ -128,7 +128,7 @@ int mod_op(unsigned int line_number)
 int mul_op(unsigned int line_number)
 {
 	int result;
-	stack_t *top = globalStack;
+	stack_t *top = memStackHead;
 
 	if (top == NULL || top->next == NULL)
 	{
@@ -140,7 +140,7 @@ int mul_op(unsigned int line_number)
 	top->next->n = result;
 
 	top->next->prev = NULL;
-	globalStack = top->next;
+	memStackHead = top->next;
 	free(top);
 
 	return (EXIT_SUCCESS);
@@ -161,7 +161,7 @@ int mul_op(unsigned int line_number)
 int sub(int line_number)
 {
 	int sum;
-	stack_t *top = globalStack;
+	stack_t *top = memStackHead;
 
 	if (top == NULL || top->next == NULL)
 	{
@@ -175,7 +175,7 @@ int sub(int line_number)
 	top->next->n = sum;
 
 	top->next->prev = NULL;
-	globalStack = top->next;
+	memStackHead = top->next;
 	free(top);
 
 	return (EXIT_SUCCESS);

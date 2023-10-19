@@ -1,10 +1,10 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#define PUSH 0
-#define PALL 1
-#define PINT 2
-#define POP 3
+#define STACK 0
+#define QUEUE 1
+#define Basic_Fun 2
+
 #define SWAP 4
 #define ADD 5
 #define NOP 6
@@ -40,36 +40,28 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
-/**
- * struct instruction_s - opcode and its function
- * @opcode: the opcode
- * @f: function to handle the opcode
- *
- * Description: opcode and its function
- * for stack, queues, LIFO, FIFO
- */
-typedef struct instruction_s
-{
-	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
-} instruction_t;
-
-extern stack_t *globalStack;
-extern instruction_t instructions[];
+extern stack_t *memStackHead;
+extern stack_t *memStackTail;
+extern int dataStructuer;
 
 int read_file(char *filename);
+int execute(char *line, int line_num);
 char **parse_arguments(char *input);
 int is_integer(char *str);
 int get_opcode(char *opcode);
 int run_command(char **arguments, int line_num);
-void free_stack();
 
+
+/*basic mem functions*/
+int runbasic_op(char * function, int lineNum, char **arguments);
+void pall();
+void free_mem();
 int push(char *str_value, int line_num);
 int pop(unsigned int line_number);
 int pint(int line_number);
+
 int swap(int line_number);
 int add(int line_number);
-void pall(stack_t *stack);
 int sub(int line_number);
 int div_op(unsigned int line_number);
 int mul_op(unsigned int line_number);

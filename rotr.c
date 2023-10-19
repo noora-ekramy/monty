@@ -11,7 +11,7 @@
  */
 int rotr_op()
 {
-	stack_t *last = globalStack;
+	stack_t *last = memStackHead;
 	stack_t *secondLast = NULL;
 
 	if (last == NULL || last->next == NULL)
@@ -23,12 +23,12 @@ int rotr_op()
 		last = last->next;
 	}
 	secondLast->next = NULL;
-	last->next = globalStack;
+	last->next = memStackHead;
 	last->prev = NULL;
 
-	if (globalStack != NULL)
-		globalStack->prev = last;
-	globalStack = last;
+	if (memStackHead != NULL)
+		memStackHead->prev = last;
+	memStackHead = last;
 
 	return (EXIT_SUCCESS);
 }

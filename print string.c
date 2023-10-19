@@ -13,7 +13,7 @@
  */
 int pstr_op()
 {
-	stack_t *current = globalStack;
+	stack_t *current = memStackHead;
 
 	while (current != NULL && current->n != 0 && isascii(current->n))
 	{
