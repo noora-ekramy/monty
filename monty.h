@@ -56,22 +56,23 @@ extern stack_t *stack;
 extern instruction_t instructions[];
 
 void interpret_file(char *filename);
-char **parse_line(char *input);
+char **parse_line(char *line);
 int is_integer(char *str);
 int opcode_to_const(char *opcode);
-void run_command(char **arguments, int line_num);
+void run_command(char **arguments, int line_number);
 void free_stack(void);
 
-int push(char *str_value, int line_num);
+int push(char *str_value, int line_number);
 int pop(unsigned int line_number);
 int pint(int line_number);
-int swap(int line_number);
-int add(int line_number);
-void pall(stack_t *stack);
-int sub(int line_number);
-int div_op(unsigned int line_number);
-int mul(unsigned int line_number);
-int mod(unsigned int line_number);
 int pchar(int line_number);
 int pstr();
+void pall(void);
+int swap(int line_number);
+int add(int line_number);
+int sub(int line_number);
+int mul(unsigned int line_number);
+int div_op(unsigned int line_number);
+int mod(unsigned int line_number);
+
 #endif /* MONTY_H */

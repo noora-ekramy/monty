@@ -71,7 +71,7 @@ void run_command(char **arguments, int line_number)
 		pstr();
 		break;
 	case PALL:
-		pall(stack);
+		pall();
 		break;
 	case SWAP:
 		swap(line_number);
