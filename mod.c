@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * mod_op - Computes the rest of the division of the second top element of
+ * mod - Computes the rest of the division of the second top element of
  *          the stack by the top element.
  * @line_number: The line number of the current instruction.
  *
@@ -13,7 +13,7 @@
  *
  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure.
  */
-int mod_op(unsigned int line_number)
+int mod(unsigned int line_number)
 {
 	int result;
 	stack_t *top = stack;

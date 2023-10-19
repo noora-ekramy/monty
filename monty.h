@@ -55,11 +55,11 @@ typedef struct instruction_s
 extern stack_t *stack;
 extern instruction_t instructions[];
 
-int read_file(char *filename);
+void interpret_file(char *filename);
 char **parse_line(char *input);
 int is_integer(char *str);
 int opcode_to_const(char *opcode);
-int run_command(char **arguments, int line_num);
+void run_command(char **arguments, int line_num);
 void free_stack(void);
 
 int push(char *str_value, int line_num);
@@ -70,8 +70,8 @@ int add(int line_number);
 void pall(stack_t *stack);
 int sub(int line_number);
 int div_op(unsigned int line_number);
-int mul_op(unsigned int line_number);
-int mod_op(unsigned int line_number);
-int pchar_op(int line_number);
-int pstr_op();
+int mul(unsigned int line_number);
+int mod(unsigned int line_number);
+int pchar(int line_number);
+int pstr();
 #endif /* MONTY_H */

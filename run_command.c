@@ -1,65 +1,84 @@
 #include "monty.h"
 
 /**
- * run_command - Executes a Monty language command based
- * on the provided arguments.
- * @arguments: An array of strings containing the command and its arguments.
- * Return: 0 on success, exits with EXIT_FAILURE on error.
+ * run_command_complement - Execute the rest of Monty bytecode commands.
+ * @arguments: An array of strings containing command arguments.
+ * @line_number: The line number of the current Monty bytecode instruction.
+ *
+ * Return: Nothing.
  */
-int run_command(char **arguments, int line_num)
+void run_command_complement(char **arguments, int line_number)
 {
-	char *opcode;
-	int exit_code;
+	unsigned short int opcode_const;
+
+	opcode_const = opcode_to_const(arguments[0]);
+
+	switch (opcode_const)
+	{
+	case ADD:
+		add(line_number);
+		break;
+	case SUB:
+		sub(line_number);
+		break;
+	case MUL:
+		mul(line_number);
+		break;
+	case DIV:
+		div_op(line_number);
+		break;
+	case MOD:
+		mod(line_number);
+		break;
+	default:
+		fprintf(stderr, "L%i: unknown instruction %s\n", line_number, arguments[0]);
+		free_stack();
+		exit(EXIT_FAILURE);
+	}
+}
+
+/**
+ * run_command - Execute a Monty bytecode command.
+ * @arguments: An array of strings containing command arguments.
+ * @line_number: The line number of the current Monty bytecode instruction.
+ *
+ * Return: Nothing.
+ */
+void run_command(char **arguments, int line_number)
+{
+	unsigned short int opcode_const;
 
 	if (arguments[0] == NULL)
-	{
-		return (0);
-	}
-	exit_code = 0;
-	opcode = arguments[0];
-	switch (opcode_to_const(opcode))
+		exit(EXIT_FAILURE);
+
+	opcode_const = opcode_to_const(arguments[0]);
+
+	switch (opcode_const)
 	{
 	case PUSH:
-		exit_code = push(arguments[1], line_num);
+		push(arguments[1], line_number);
+		break;
+	case POP:
+		pop(line_number);
+		break;
+	case PINT:
+		pint(line_number);
+		break;
+	case PCHAR:
+		pchar(line_number);
+		break;
+	case PSTR:
+		pstr();
 		break;
 	case PALL:
 		pall(stack);
 		break;
-	case PINT:
-		exit_code = pint(line_num);
-		break;
-	case POP:
-		exit_code = pop(line_num);
-		break;
 	case SWAP:
-		exit_code = swap(line_num);
-		break;
-	case ADD:
-		exit_code = add(line_num);
+		swap(line_number);
 		break;
 	case NOP:
 		break;
-	case SUB:
-		exit_code = sub(line_num);
-		break;
-	case DIV:
-		exit_code = div_op(line_num);
-		break;
-	case MUL:
-		exit_code = mul_op(line_num);
-		break;
-	case MOD:
-		exit_code = mod_op(line_num);
-		break;
-	case PCHAR:
-		exit_code = pchar_op(line_num);
-		break;
-	case PSTR:
-		exit_code = pstr_op();
-		break;
 	default:
-		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);
-		return (EXIT_FAILURE);
+		run_command_complement(arguments, line_number);
 	}
-	return (exit_code);
 }

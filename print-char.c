@@ -2,7 +2,7 @@
 #include <ctype.h>
 
 /**
- * pchar_op - Prints the character at the top of the stack.
+ * pchar - Prints the character at the top of the stack.
  * @line_number: The line number of the current instruction.
  *
  * This function prints the character at the top of the stack,
@@ -12,7 +12,7 @@
  *
  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure.
  */
-int pchar_op(int line_number)
+int pchar(int line_number)
 {
 	stack_t *top = stack;
 

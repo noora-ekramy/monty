@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * mul_op - Multiplies the second top element of the stack by the top element.
+ * mul - Multiplies the second top element of the stack by the top element.
  * @line_number: The line number of the current instruction.
  *
  * This function multiplies the second top element of the stack by the top
@@ -11,7 +11,7 @@
  *
  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure.
  */
-int mul_op(unsigned int line_number)
+int mul(unsigned int line_number)
 {
 	int result;
 	stack_t *top = stack;

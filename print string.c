@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * pstr_op - Prints the string starting from the top of the stack.
+ * pstr - Prints the string starting from the top of the stack.
  * @line_number: The line number of the current instruction.
  *
  * This function interprets the integers stored in the stack as ASCII values
@@ -11,7 +11,7 @@
  *
  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure.
  */
-int pstr_op()
+int pstr()
 {
 	stack_t *current = stack;
 
