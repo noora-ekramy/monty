@@ -39,6 +39,8 @@ int get_opcode(char *opcode)
 		return (PSTR);
 	if (strcmp(opcode, "rotl") == 0)
 		return (ROTL);
+	if (strcmp(opcode, "rotr") == 0)
+		return (ROTR);
 	return (INVALID_OPCODE);
 }
 /**
@@ -100,6 +102,9 @@ int run_command(char **arguments, int line_num)
 		break;
 	case ROTL:
 		exit_code = rotl_op();
+		break;
+	case ROTR:
+		exit_code = rotr_op();
 		break;
 	default:
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_num, opcode);
