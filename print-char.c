@@ -14,7 +14,7 @@
  */
 int pchar_op(int line_number)
 {
-	stack_t *top = globalStack;
+	stack_t *top = stack;
 
 	if (top == NULL)
 	{

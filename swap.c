@@ -13,7 +13,7 @@
 int swap(int line_number)
 {
 	int temp;
-	stack_t *top = globalStack;
+	stack_t *top = stack;
 
 	if (top == NULL || top->next == NULL)
 	{

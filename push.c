@@ -30,16 +30,16 @@ int push(char *str_value, int line_num)
 
 	new_node->n = value;
 	new_node->prev = NULL;
-	if (globalStack)
+	if (stack)
 	{
-		new_node->next = globalStack;
-		(globalStack)->prev = new_node;
+		new_node->next = stack;
+		(stack)->prev = new_node;
 	}
 	else
 	{
 		new_node->next = NULL;
 	}
 
-	globalStack = new_node;
+	stack = new_node;
 	return(0);
 }

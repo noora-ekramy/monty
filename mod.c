@@ -16,7 +16,7 @@
 int mod_op(unsigned int line_number)
 {
 	int result;
-	stack_t *top = globalStack;
+	stack_t *top = stack;
 
 	if (top == NULL || top->next == NULL)
 	{
@@ -34,7 +34,7 @@ int mod_op(unsigned int line_number)
 	top->next->n = result;
 
 	top->next->prev = NULL;
-	globalStack = top->next;
+	stack = top->next;
 	free(top);
 
 	return (EXIT_SUCCESS);

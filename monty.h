@@ -52,15 +52,15 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern stack_t *globalStack;
+extern stack_t *stack;
 extern instruction_t instructions[];
 
 int read_file(char *filename);
-char **parse_arguments(char *input);
+char **parse_line(char *input);
 int is_integer(char *str);
-int get_opcode(char *opcode);
+int opcode_to_const(char *opcode);
 int run_command(char **arguments, int line_num);
-void free_stack();
+void free_stack(void);
 
 int push(char *str_value, int line_num);
 int pop(unsigned int line_number);

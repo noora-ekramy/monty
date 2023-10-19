@@ -1,6 +1,6 @@
 #include "monty.h"
 
-stack_t *globalStack = NULL;
+stack_t *stack = NULL;
 
 /**
  * main - Entry point for the Monty ByteCodes Interpreter
@@ -23,16 +23,14 @@ stack_t *globalStack = NULL;
  */
 int main(int argc, char *argv[])
 {
-
-	int exit_code;
-
 	if (argc != 2)
 	{
 		fprintf(stderr, "%s\n", "USAGE: monty file\n");
 		return (EXIT_FAILURE);
 	}
 
-	exit_code = read_file(argv[1]);
+	interpret_file(argv[1]);
 	free_stack();
-	return (exit_code);
+
+	return (EXIT_SUCCESS);
 }

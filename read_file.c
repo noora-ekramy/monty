@@ -21,7 +21,7 @@ int read_file(char *filename)
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		
-		arguments = parse_arguments(line);
+		arguments = parse_line(line);
 		exit_code = run_command(arguments, line_num);
 		free(arguments);
 		if (exit_code == EXIT_FAILURE)

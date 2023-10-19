@@ -17,13 +17,13 @@ int run_command(char **arguments, int line_num)
 	}
 	exit_code = 0;
 	opcode = arguments[0];
-	switch (get_opcode(opcode))
+	switch (opcode_to_const(opcode))
 	{
 	case PUSH:
 		exit_code = push(arguments[1], line_num);
 		break;
 	case PALL:
-		pall(globalStack);
+		pall(stack);
 		break;
 	case PINT:
 		exit_code = pint(line_num);

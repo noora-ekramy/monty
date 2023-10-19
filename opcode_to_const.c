@@ -1,10 +1,12 @@
 #include "monty.h"
+
 /**
- * get_opcode - Maps an opcode string to its corresponding integer constant.
+ * opcode_to_const - Maps opcode string to its corresponding integer constant.
  * @opcode: The opcode string to be mapped.
+ *
  * Return: The corresponding integer constant for the opcode.
  */
-int get_opcode(char *opcode)
+int opcode_to_const(char *opcode)
 {
 	char *p;
 
@@ -37,5 +39,6 @@ int get_opcode(char *opcode)
 		return (PCHAR);
 	if (strcmp(opcode, "pstr") == 0)
 		return (PSTR);
+
 	return (INVALID_OPCODE);
 }

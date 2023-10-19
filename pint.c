@@ -7,11 +7,11 @@
  */
 int pint(int line_number)
 {
-	if (globalStack == NULL)
+	if (stack == NULL)
 	{
 		fprintf(stderr, "L%i: can't pint, stack empty\n", line_number);
 		return(EXIT_FAILURE);
 	}
-	printf("%d\n", globalStack->n);
+	printf("%d\n", stack->n);
 	return (0);
 }

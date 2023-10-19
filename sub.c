@@ -14,7 +14,7 @@
 int sub(int line_number)
 {
 	int difference;
-	stack_t *top = globalStack;
+	stack_t *top = stack;
 
 	if (top == NULL || top->next == NULL)
 	{
@@ -27,7 +27,7 @@ int sub(int line_number)
 	top->next->n = difference;
 
 	top->next->prev = NULL;
-	globalStack = top->next;
+	stack = top->next;
 	free(top);
 
 	return (EXIT_SUCCESS);

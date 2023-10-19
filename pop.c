@@ -9,18 +9,18 @@ int pop(unsigned int line_number)
 {
 	stack_t *temp;
 
-	if (globalStack == NULL)
+	if (stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		return(EXIT_FAILURE);
 	}
 
-	temp = globalStack;
-	globalStack = globalStack->next;
+	temp = stack;
+	stack = stack->next;
 
-	if (globalStack != NULL)
+	if (stack != NULL)
 	{
-		globalStack->prev = NULL;
+		stack->prev = NULL;
 	}
 
 	free(temp);
